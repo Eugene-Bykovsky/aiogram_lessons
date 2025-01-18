@@ -3,7 +3,8 @@ import logging
 from environs import Env
 
 from aiogram import Bot, Dispatcher
-from app.handlers import user_router
+from app.handlers.user import user_router
+from app.handlers.admin import admin_router
 
 
 async def main():
@@ -12,7 +13,7 @@ async def main():
     TELEGRAM_TOKEN = env.str('TELEGRAM_TOKEN')
     bot = Bot(token=TELEGRAM_TOKEN)
     dp = Dispatcher()
-    dp.include_router(user_router)
+    dp.include_routers(user_router, admin_router)
     await dp.start_polling(bot)
 
 

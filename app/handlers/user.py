@@ -34,8 +34,3 @@ async def echo(message: Message):
 @user_router.message(F.animation)
 async def echo(message: Message):
     await message.answer_animation(animation=message.animation.file_id)
-
-
-@user_router.message(F.from_user.id == 534211907)
-async def echo(message: Message):
-    await message.answer(f'Ваш ID: {message.from_user.id}')
